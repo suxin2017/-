@@ -1,0 +1,35 @@
+.index{
+  .title{
+    text-align: center;
+  }
+  .feature-view{
+    margin-top: 20rpx;
+  }
+
+  .at-card-no-header{
+    .at-card__header{
+      display: none;
+    }
+  }
+  .contern-body{
+    position:relative;
+    top:-118rpx;
+
+  }
+  .countdown{
+  
+    .at-card{
+      padding: 20rpx 0rpx 20rpx 30rpx;
+    }
+    .at-card__header{
+      border-bottom: none;
+    }
+    .at-countdown__item{
+      margin: 0rpx 20rpx;
+    }
+    .at-countdown__time-box {
+      font-size: 120rpx;
+      color: aquamarine;
+    }
+  }
+}
