@@ -1,0 +1,42 @@
+
+@import "~taro-ui/dist/style/index.scss";
+.at-card-no-header{
+    .at-card__header{
+      display: none;
+    }
+  }
+  $borderColor:#ccc;
+  .box{
+    height: 120px;
+    border-bottom: 1px solid $borderColor;
+    margin-bottom: 50rpx;
+
+  }
+  .flat-card{
+    height: 130px;
+    border-top: 1px solid $borderColor;
+
+  }
+  .at-card{
+    margin: 12px;
+  }
+
+  .ticket {
+    font-size: 26rpx;
+    color: #ff4d4d;
+    margin:0 15rpx;
+  }
+  .help {
+    font-size: 20rpx;
+    background: #ff984d;
+    color: #fff;
+    width: 80rpx;
+    height: 30rpx;
+    margin: auto;
+  text-align: center;
+    border-radius: 15rpx;
+  }
+  .name {
+    margin-top: 15rpx;
+    font-size: 30rpx;
+  }

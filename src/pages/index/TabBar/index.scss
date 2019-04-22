@@ -1,0 +1,34 @@
+.index{
+    display:flex;
+    position: fixed;
+    bottom: 0px;
+    background: #fff;
+    justify-content:space-around;
+    font-size:28px;
+    text-align: center;
+    z-index: 10000;
+    width: 100%;
+    min-height: 120px;
+    .tab{
+        margin: auto 0;
+    }
+    .icon{
+        width:48rpx;
+        height:48rpx;
+        margin: 0 auto;
+    }
+    .content{
+        cover-image{
+            width:128rpx;
+            height:128rpx;
+            position: relative;
+            top:-70rpx;
+            left:-35rpx;
+            
+        }
+    }
+    cover-image{
+        width:48rpx;
+        height:48rpx;
+    }
+}

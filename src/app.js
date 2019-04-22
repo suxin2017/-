@@ -2,9 +2,9 @@ import '@tarojs/async-await'
 import 'taro-ui/dist/style/index.scss'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
+import { AtTabBar  } from 'taro-ui'
 import Index from './pages/index'
 import configStore from './store'
-import './assets/scss/font-awesome.scss'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -19,12 +19,19 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/rankinglist/index',
+      'pages/upload/index',
+      'pages/player/index',
+      'pages/award/index',
+      'pages/cooperate/index',
     ],
+    "cloud": true,
     window: {
-      backgroundTextStyle: 'light',
+      enablePullDownRefresh:true,
+      backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '微信接口功能演示',
+      navigationBarTitleText: '思潮儿童美术班作品竞赛',
       navigationBarTextStyle: 'black'
     }
   }
@@ -38,6 +45,7 @@ class App extends Component {
   componentCatchError () {}
 
   componentDidCatchError () {}
+
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

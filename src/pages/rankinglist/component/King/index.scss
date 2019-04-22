@@ -1,0 +1,94 @@
+.index {
+  .text-center {
+    text-align: center;
+  }
+
+  .card-box {
+    margin-left: 10%;
+    margin-right: 10%;
+
+    .card {
+      width: 28vw;
+      background: #fff;
+      height: 300rpx;
+      position: relative;
+      padding-top: 40rpx;
+
+      .name {
+        margin-top: 15rpx;
+        font-size: 30rpx;
+      }
+
+      .ticket {
+        font-size: 28rpx;
+        margin: 15rpx;
+        color: #ff4d4d;
+      }
+
+      .help {
+        font-size: 20rpx;
+        background: #ff984d;
+        color: #fff;
+        width: 80rpx;
+        margin: auto;
+        height: 30rpx;
+        border-radius: 15rpx;
+      }
+
+      .king {
+        position: absolute;
+        top: 10rpx;
+        left: 110rpx;
+      }
+
+      .bottom {
+        position: absolute;
+        bottom: 160rpx;
+        left: 19rpx;
+      }
+    }
+
+    .first {
+      position: relative;
+      height: 320px;
+      top: -20px;
+    }
+
+    .content {
+      .name {
+        margin-top: 32rpx;
+        font-size: 30rpx;
+      }
+
+      .bottom {
+        position: absolute;
+        bottom: 180rpx;
+        left: 19rpx;
+      }
+    }
+
+    .after {
+      display: block;
+      width: 10px;
+      height: 65%;
+      position: absolute;
+      top: 20px;
+      left: -10px;
+
+      background: linear-gradient(to right top, transparent 50%, rgba(0, 0, 0, 0.2) 0);
+    }
+
+    .before {
+      display: block;
+      width: 10px;
+      height: 65%;
+      position: absolute;
+      top: 20px;
+      right: -10px;
+      z-index: 10;
+
+      background: linear-gradient(to right top, transparent 50%, rgba(0, 0, 0, 0.2) 0);
+    }
+  }
+
+}
