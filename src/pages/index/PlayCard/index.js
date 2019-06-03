@@ -24,23 +24,27 @@ class Index extends Component {
     componentDidHide() { }
     handleClick = (...args) => {
         console.log(args)
+        Taro.navigateTo({ url: '../player/index' }).then(console.log("成功转跳页面"))
     }
     render() {
+      const {data} = this.props;
+      console.log(data,'darta')
         return (
             <View className='palyer-card'>
                 <View className='layer header'>
-                  <View className='name' > <Text>name</Text></View>
+                  <View className='name' > <Text>{data.name}</Text></View>
                   <View  className='button' onClick={this.handleClick}> 投票</View>
                 </View>
                 <View className='content'>
                   <Image
                     style='width: 100%;height:100%;'
-                    src={img}
+                    mode='widthFix'
+                    src={data.fileId}
                   />
                 </View>
                 <View className='layer footer'>
-                  <View > ID:234234</View>
-                  <View > 234234票</View>
+                  <View > ID:{data._id}</View>
+                  <View > {data.poll}票</View>
                 </View>
             </View>
         )

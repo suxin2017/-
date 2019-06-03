@@ -6,7 +6,8 @@ import { AtTabBar  } from 'taro-ui'
 import Index from './pages/index'
 import configStore from './store'
 import './app.scss'
-
+import aware from './assets/aware.png'
+import {getUserInfo} from './util/api'
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -21,7 +22,6 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/rankinglist/index',
-      'pages/upload/index',
       'pages/player/index',
       'pages/award/index',
       'pages/cooperate/index',
@@ -33,10 +33,39 @@ class App extends Component {
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: '思潮儿童美术班作品竞赛',
       navigationBarTextStyle: 'black'
-    }
+    },
+    // "tabBar": {
+    //   "selectedColor": "#000000",
+    //   "backgroundColor": "#000000",
+    //   "position":"top",
+    //   "list":[{
+    //     "pagePath":'pages/award/index',
+    //     "text":"abc",
+    //     "iconPath":aware,
+    //   },{
+    //     "pagePath":'pages/player/index',
+    //     "text":"abc",
+    //     "iconPath":aware,
+    //   }]
+    // },
+    // "usingComponents": {}
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    wx.cloud.init();
+    getUserInfo((e)=>{
+      console.log(e.userInfo,'123')
+    })
+    Taro.getSetting().then(e=>{
+      if(e.authSetting['scope.userInfo']){
+        Taro.getUserInfo({
+          success(res) {
+            console.log(res.userInfo)
+          }
+      })
+      }
+  })
+  }
 
   componentDidShow () {}
 

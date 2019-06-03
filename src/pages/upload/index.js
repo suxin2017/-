@@ -5,6 +5,7 @@ import { AtCountdown, AtCard, AtTabBar } from 'taro-ui'
 
 import { add, minus, asyncAdd } from '../../actions/counter'
 import bg from '../../img/bg.jpg'
+import {uploadFile} from '../../util/file'
 
 class Index extends Component {
   constructor (props) {
@@ -33,31 +34,8 @@ class Index extends Component {
 
   componentDidHide() { }
   uploadImg = ()=>{
-    wx.cloud.init();
-    Taro.chooseImage({
-      count:1,
-      success:(res)=>{
-            // 将图片上传至云存储空间
-            wx.cloud.uploadFile({
-              // 指定上传到的云路径
-              cloudPath: 'images/my-photo.png',
-              // 指定要上传的文件的小程序临时文件路径
-              filePath: res.tempFilePaths[0],
-              // 成功回调
-              success: d => {
-                console.log('上传成功', d)
-              },
-              fail: console.error
-            })
-        this.setState({url:res.tempFilePaths[0]})
-        Taro.getImageInfo({
-          src:res.tempFilePaths[0],
-          success:(info)=>{
-            console.log(info);
-          }
-        })
-      }
-    })
+  
+    uploadFile()
   }
   render() {
     return (
@@ -71,6 +49,7 @@ class Index extends Component {
         <Image mode="widthFix" style="width: 48vw;margin:0 8rpx; height: 200px; background-color: #eeeeee;" src={this.state.url}></Image>
         <Image mode="widthFix" style="width: 48vw; margin:0 8rpx; height: 200px; background-color: #eeeeee;" src={this.state.url}></Image>
         </View>
+       
         <View onClick={this.uploadImg}>上传图片
         </View>
       </View>

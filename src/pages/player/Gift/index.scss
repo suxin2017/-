@@ -1,0 +1,22 @@
+@import "~taro-ui/dist/style/components/flex.scss";
+.gift-box {
+  font-size: 20rpx;
+  padding: 15rpx;
+  background-color: #170c41;
+  border-radius: 25px;
+
+  .gift-bg {
+    max-height: 200rpx;
+    background-color: #1e1056;
+    border-radius: 25rpx;
+    margin: 15rpx;
+  }
+
+  .gift-bg:hover {
+    background-color: #2c177e;
+  }
+
+  .gift-consume {
+    color: #ff9915;
+  }
+}

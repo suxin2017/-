@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text } from '@tarojs/components'
-import award from '../../assets/one.png'
-
+import { View, Image } from '@tarojs/components'
+import Footer from '../../components/Footer'
 
 
 class Index extends Component {
@@ -23,16 +22,14 @@ class Index extends Component {
   render() {
     return (
       <View className='index'>
-            <Image src={award} style='width:99vw;height:280rpx;' />
-            <Image src={award} style='width:99vw;height:280rpx;' />
-            <Image src={award} style='width:99vw;height:280rpx;' />
-            <Image src={award} style='width:99vw;height:280rpx;' />
-            <Image src={award} style='width:99vw;height:280rpx;' />
-            <Image src={award} style='width:99vw;height:280rpx;' />
-            <Image src={award} style='width:99vw;height:280rpx;' />
-            <Image src={award} style='width:99vw;height:280rpx;' />
-
-      </View>
+      <Image src='cloud://sign-8a5778.7369-sign-8a5778/aware/特等奖1.png' style='width:99vw;height:280rpx;margin-top:25rpx;' />
+            <Image src='cloud://sign-8a5778.7369-sign-8a5778/aware/特等奖2.png' style='width:99vw;height:280rpx;' />
+            <Image src='cloud://sign-8a5778.7369-sign-8a5778/aware/一等奖.png' style='width:99vw;height:280rpx;' />
+            <Image src='cloud://sign-8a5778.7369-sign-8a5778/aware/二等奖.png' style='width:99vw;height:280rpx;' />
+            <Image src='cloud://sign-8a5778.7369-sign-8a5778/aware/二等奖-1.png' style='width:99vw;height:280rpx;' />
+            <Image src='cloud://sign-8a5778.7369-sign-8a5778/aware/二等奖-2.png' style='width:99vw;height:280rpx;' />
+            <Footer></Footer>
+            </View>
     )
   }
 }

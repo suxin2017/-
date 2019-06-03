@@ -1,9 +1,9 @@
 .palyer-card{
     border: 1px solid #d6e4ef;
     border-radius: 12px;
-    height: 320px;
+    // height: 320px;
     margin:0 12px 20px;
-    padding:24px;
+    padding:10rpx;
     .layer{
         display: flex;
         justify-content: space-between;
@@ -12,7 +12,7 @@
     .header{
         .name{
             margin: auto 0;
-            font-size: 36px;
+            font-size: 28rpx;
         }
         .button{
             margin: auto 0;
@@ -24,7 +24,7 @@
         }
     }
     .content{
-        height: 220px;
+        // height: 220px;
         margin:10px 0;
         border-radius: 12px;
         image{

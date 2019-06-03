@@ -1,18 +1,19 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { AtCountdown, AtCard, AtTabBar } from 'taro-ui'
+import { AtCountdown,AtAvatar, AtCard, AtTabBar } from 'taro-ui'
 import King from './component/King'
 import { add, minus, asyncAdd } from '../../actions/counter'
 import bg from '../../img/bg.jpg'
-import './index.scss'
-import img from '../../assets/image/img.png'
+import { getUserByLimitRank } from '../../util/db'
 
+import './index.scss'
 
 class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userdata:[],
       countListData: [{
         title: "参与选手",
         count: 35,
@@ -33,15 +34,56 @@ class Index extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps)
+  
   }
 
   componentWillUnmount() { }
 
-  componentDidShow() { }
-
+  componentDidShow() {
+    getUserByLimitRank().then(res => {
+      console.log(res.data)
+     this.setState({userdata:res.data})
+    })
+   }
+   onClick(){
+    Taro.navigateTo({url:'../player/index'}).then(console.log("成功转跳页面"))
+   }
   componentDidHide() { }
 
   render() {
+    let rankinglist = this.state.userdata.map((item,i)=>{
+    console.log(item)
+
+      return   ( <View key={i} className='flat-card' style=' border-top: 1px solid #bbb;'>
+      <View className='at-row'>
+        <View className='at-col-3'>
+          <View>
+            <Image src={`${item.fileId}`} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
+          </View>
+        </View>
+        <View className='at-col'>
+          <View className='at-row'>
+            <View className='at-col'>
+              <View className='text-center name'>{item.name}</View>
+              <View className='text-center ranking'>排名:{i+4}</View>
+            </View>
+            <View className='at-col-5' style='padding-top:40rpx;'>
+              <View className='at-row'>
+
+                <View className='text-center ticket '>{item.poll}票数</View>
+
+                <View className='text-center help' onClick={this.onClick}>帮他</View>
+              </View>
+            </View>
+          </View>
+
+
+        </View>
+
+
+      </View>
+    </View>)
+    })
     return (
       <View className='index'>
 
@@ -62,276 +104,12 @@ class Index extends Component {
           </View>
 
         </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
+            { rankinglist}
+        
 
 
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
-        <View className='flat-card' style=' border-top: 1px solid #bbb;'>
-          <View className='at-row'>
-            <View className='at-col-3'>
-              <View>
-                <Image src={img} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
-              </View>
-
-            </View>
-            <View className='at-col'>
-              <View className='at-row'>
-                <View className='at-col'>
-                  <View className='text-center name'>张帅</View>
-                  <View className='text-center ranking'>排名:12</View>
-                </View>
-                <View className='at-col-5' style='padding-top:40rpx;'>
-                  <View className='at-row'>
-
-                    <View className='text-center ticket '>123票数</View>
-
-                    <View className='text-center help'>帮他</View>
-                  </View>
-                </View>
-              </View>
-
-
-            </View>
-
-
-          </View>
-        </View>
+      
+       
        
 
 
