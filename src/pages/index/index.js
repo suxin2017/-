@@ -9,6 +9,8 @@ import { getUserByLimit } from '../../util/db'
 import joinpng from './assets/join.png'
 import searchpng from './assets/search.png'
 import guagngaopng from './assets/guanggao.png'
+import Footer from '../../components/Footer'
+
 import './index.scss'
 
 
@@ -116,13 +118,11 @@ class Index extends Component {
   }
   render() {
     let userOddView = this.state.userdata.map((item, i) => {
-      if (i % 2 == 0) {
         return (<PlayerCard key={i} data={item[0]}></PlayerCard>)
-      }
     })
     let userEvenView = this.state.userdata.map((item, i) => {
-      if (i % 2 !== 0) {
-        return (<PlayerCard key={i} data={item[0]}></PlayerCard>)
+      if(item[1]!==null){
+        return (<PlayerCard key={i} data={item[1]}></PlayerCard>)
       }
     })
     return (
@@ -178,7 +178,7 @@ class Index extends Component {
         </View>
 
 
-
+        <Footer></Footer>
 
       </View>
     )

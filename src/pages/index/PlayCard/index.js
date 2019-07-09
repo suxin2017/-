@@ -39,6 +39,7 @@ class Index extends Component {
                   <Image
                     style='width: 100%;height:100%;'
                     mode='widthFix'
+                    lazy-load
                     src={data.fileId}
                   />
                 </View>

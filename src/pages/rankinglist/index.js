@@ -5,7 +5,7 @@ import { AtCountdown,AtAvatar, AtCard, AtTabBar } from 'taro-ui'
 import King from './component/King'
 import { add, minus, asyncAdd } from '../../actions/counter'
 import bg from '../../img/bg.jpg'
-import { getUserByLimitRank } from '../../util/db'
+import { getUserByLimitRank,getCount } from '../../util/db'
 
 import './index.scss'
 
@@ -13,6 +13,7 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      topUserData:[],
       userdata:[],
       countListData: [{
         title: "参与选手",
@@ -40,9 +41,16 @@ class Index extends Component {
   componentWillUnmount() { }
 
   componentDidShow() {
-    getUserByLimitRank().then(res => {
-      console.log(res.data)
+    getUserByLimitRank({skip:3,limit:7}).then(res => {
      this.setState({userdata:res.data})
+    })
+    getUserByLimitRank({skip:0,limit:3}).then(res => {
+     this.setState({topUserData:res.data})
+    })
+    getCount().then(res=>{
+      let countListData= this.state;
+      countListData[0].count=res.total
+      this.setState({})
     })
    }
    onClick(){
@@ -51,14 +59,14 @@ class Index extends Component {
   componentDidHide() { }
 
   render() {
+    
     let rankinglist = this.state.userdata.map((item,i)=>{
-    console.log(item)
 
       return   ( <View key={i} className='flat-card' style=' border-top: 1px solid #bbb;'>
       <View className='at-row'>
         <View className='at-col-3'>
           <View>
-            <Image src={`${item.fileId}`} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
+            <Image src={`${item.avatarUrl}`} style='margin:auto;margin-top:15rpx;width:100rpx;height:100rpx;border-radius:50%;display:block;'></Image>
           </View>
         </View>
         <View className='at-col'>
@@ -87,7 +95,7 @@ class Index extends Component {
     return (
       <View className='index'>
 
-        <King></King>
+        <King data={this.state.topUserData}></King>
         <View className='box '>
           <View className='at-row'>
             {this.state.countListData.map((item, k) => {

@@ -23,6 +23,7 @@ class App extends Component {
       'pages/index/index',
       'pages/rankinglist/index',
       'pages/player/index',
+     
       'pages/award/index',
       'pages/cooperate/index',
     ],

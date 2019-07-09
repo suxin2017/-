@@ -21,6 +21,16 @@ export async function getUserById(id){
 export async function getUserByLimit(){
   return await db.collection('myapp').limit(100).get()
 }
-export async function getUserByLimitRank(){
-  return await db.collection('myapp').limit(10).orderBy('poll', 'asc').get()
+export async function getUserByLimitRank({skip=0,limit=10}){
+  return await db.collection('myapp').limit(limit).skip(skip).orderBy('poll', 'asc').get()
+}
+
+export async function getCount(){
+  return await db.collection('myapp').count();
+
+}
+
+export async function getPollCount(){
+  
+  return await db.collection('myapp');
 }

@@ -6,6 +6,7 @@ import { AtCountdown, AtCard, AtTabBar } from 'taro-ui'
 import Gift from './Gift'
 import { add, minus, asyncAdd } from '../../actions/counter'
 import bg from '../../img/bg.jpg'
+import touxiang from './assets/touxiang.png'
 import './index.scss'
 
 const data = [[{
@@ -91,15 +92,18 @@ class Index extends Component {
       <View className='index'>
         <View className='user-info'>
           <View className='at-row'>
-            <View className='at-col'>
-              <View className='text-center name'>张帅</View>
-              <View className='text-center ranking'>排名:12</View>
+            <View className='at-col-3'>
+              <View  id='touxiang' >
+              <Image src='https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epIau7LiaOu2wWCCmViaZxQwJQYB3q6ROdXL1kxXDofHNqTvURuzGqgI8ZUhDmDfPUSGdd9sYfRFLicg/132' style='margin:auto;width:128rpx;height:128rpx;border-radius:50%;display:block;'></Image>
+              </View>
+             
             </View>
             <View className='at-col-5' style='padding-top:40rpx;'>
-              <View className='at-row'>
-                <View className='text-center ticket '>123票数</View>
-                <View className='text-center help'>帮他</View>
-              </View>
+            <View className='at-row'>
+                <View>icon</View>
+                <View className='text-center'>王帅</View>
+            </View>
+                <View className='text-center' style='font-size:20rpx;'>给他送上一份礼物吧</View>
             </View>
           </View>
         </View>

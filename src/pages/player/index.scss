@@ -3,6 +3,17 @@
     height: 100vh;
     background: #0f082a;
     color: aliceblue;
+    .user-info{
+        padding: 20rpx;
+        #touxiang{
+            border: 10px solid #1b0868;
+            border-radius: 50%;
+            width: 128rpx;
+            height: 128rpx;
+        }
+        
+    }
+   
     .gift-box{
         font-size: 20rpx;
         padding: 15rpx;
