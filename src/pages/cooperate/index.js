@@ -8,6 +8,7 @@ import bg from './img/bg.gif'
 import weixinIcon from './img/weixin.gif'
 import phoneIcon from './img/phone.png'
 import './index.scss'
+import { setCurrentTabBar } from '@/util/wxapp';
 
 @connect(({ counter }) => ({
   counter
@@ -34,7 +35,9 @@ class Index extends Component {
 
   componentWillUnmount() { }
 
-  componentDidShow() { }
+  componentDidShow() { 
+    setCurrentTabBar.call(this,4)
+  }
 
   componentDidHide() { }
   handleClick = (...args) => {

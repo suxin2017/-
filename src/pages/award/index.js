@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import Footer from '../../components/Footer'
-
+import  {setCurrentTabBar}  from '@/util/wxapp';
 
 class Index extends Component {
 
@@ -15,7 +15,9 @@ class Index extends Component {
 
   componentWillUnmount() { }
 
-  componentDidShow() { }
+  componentDidShow() { 
+    setCurrentTabBar.call(this,1)
+  }
 
   componentDidHide() { }
 

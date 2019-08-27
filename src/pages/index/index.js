@@ -4,7 +4,6 @@ import { connect } from '@tarojs/redux'
 import { AtCountdown, AtButton, AtCurtain, AtMessage, AtCard, AtTabBar } from 'taro-ui'
 import PlayerCard from './PlayCard'
 import { add, minus, asyncAdd } from '../../actions/counter'
-import TabBar from './TabBar'
 import { getUserByLimit } from '../../util/db'
 import joinpng from './assets/join.png'
 import searchpng from './assets/search.png'
@@ -12,6 +11,7 @@ import guagngaopng from './assets/guanggao.png'
 import Footer from '../../components/Footer'
 
 import './index.scss'
+import { setCurrentTabBar } from '@/util/wxapp';
 
 
 @connect(({ global }) => ({
@@ -44,8 +44,8 @@ class Index extends Component {
   componentWillUnmount() { }
 
   componentDidShow() {
-
     console.log(this.props)
+    setCurrentTabBar.call(this,0)
     getUserByLimit().then(res => {
       let arr = [];
       console.log(res)
@@ -155,7 +155,7 @@ class Index extends Component {
               />
             </AtCard>
           </View>
-          <TabBar onAddSuccess={this.onAddSuccess}></TabBar>
+          {/* <TabBar onAddSuccess={this.onAddSuccess}></TabBar> */}
           <View className='at-row feature-view'>
             <View className='at-col' style='margin-left:8px;'>
               <Image src={joinpng} className='image'></Image>

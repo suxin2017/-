@@ -23,9 +23,10 @@ class App extends Component {
       'pages/index/index',
       'pages/rankinglist/index',
       'pages/player/index',
-     
+      'pages/detail/index',
       'pages/award/index',
       'pages/cooperate/index',
+      'pages/upload/index',
     ],
     "cloud": true,
     window: {
@@ -35,21 +36,45 @@ class App extends Component {
       navigationBarTitleText: '思潮儿童美术班作品竞赛',
       navigationBarTextStyle: 'black'
     },
-    // "tabBar": {
-    //   "selectedColor": "#000000",
-    //   "backgroundColor": "#000000",
-    //   "position":"top",
-    //   "list":[{
-    //     "pagePath":'pages/award/index',
-    //     "text":"abc",
-    //     "iconPath":aware,
-    //   },{
-    //     "pagePath":'pages/player/index',
-    //     "text":"abc",
-    //     "iconPath":aware,
-    //   }]
-    // },
-    // "usingComponents": {}
+    "tabBar": {
+      "custom": true,
+      "selectedColor": "#000000",
+      "backgroundColor": "#000000",
+      "position":"top",
+      "list": [
+        {
+          pagePath: "pages/index/index",
+          iconPath: "/assets/index.png",
+          selectedIconPath: "/assets/index.png",
+          text: "首页"
+        },
+        {
+          pagePath: "pages/award/index",
+          iconPath: "/assets/aware.png",
+          selectedIconPath: "/assets/aware.png",
+          text: "奖品"
+        },
+        {
+          pagePath: "pages/upload/index",
+          iconPath: "/assets/upload.png",
+          selectedIconPath: "/assets/upload.png",
+          text: "上传作品"
+        },
+        {
+          pagePath: "pages/rankinglist/index",
+          iconPath: "/assets/rankinglist.png",
+          selectedIconPath: "/assets/rankinglist.png",
+          text: "排行"
+        },
+        {
+          pagePath: "pages/cooperate/index",
+          iconPath: "/assets/compare.png",
+          selectedIconPath: "/assets/compare.png",
+          text: "合作"
+        },
+      ]
+    },
+  
   }
 
   componentDidMount () {

@@ -8,6 +8,7 @@ import bg from '../../img/bg.jpg'
 import { getUserByLimitRank,getCount } from '../../util/db'
 
 import './index.scss'
+import { setCurrentTabBar } from '@/util/wxapp';
 
 class Index extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Index extends Component {
   componentWillUnmount() { }
 
   componentDidShow() {
+    setCurrentTabBar.call(this,3)
     getUserByLimitRank({skip:3,limit:7}).then(res => {
      this.setState({userdata:res.data})
     })

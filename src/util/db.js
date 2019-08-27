@@ -13,9 +13,11 @@ export async function add(data){
 }
 
 export async function getUserById(id){
-  return await db.collection('myapp').where({
+  let data =  await db.collection('myapp').where({
     _id:id// _openid: 'xxx' // 填入当前用户 openid
   }).get()
+  return data.data;
+
 }
 
 export async function getUserByLimit(){

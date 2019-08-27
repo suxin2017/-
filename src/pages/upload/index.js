@@ -1,17 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-import { AtCountdown, AtCard, AtTabBar } from 'taro-ui'
-
-import { add, minus, asyncAdd } from '../../actions/counter'
-import bg from '../../img/bg.jpg'
-import {uploadFile} from '../../util/file'
+import { View} from '@tarojs/components'
+import {uploadFile} from '@/util/file';
+import { setCurrentTabBar } from '@/util/wxapp';
 
 class Index extends Component {
   constructor (props) {
     super(props)
     this.state = { 
-      url:"cloud://sign-8a5778.7369-sign-8a5778-1257631768/images/my-photo.png"
     }
  
   }
@@ -22,15 +17,26 @@ class Index extends Component {
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps)
   }
-  componentDidMount() {
+  componentDidShow() {
+    setCurrentTabBar.call(this,2)
+    // uploadFile((file)=>{
+    //   getUserInfo((data)=>{
+    //     data.userInfo.fileId = file;
+    //     data.userInfo.name = data.userInfo.nickName;
+    //     let arg = data.userInfo;
+    //     add(arg).then(e=>{
+    //       Taro.hideLoading()
+    //       console.log(e,'addsuccess')
+    //       this.props.onAddSuccess(e);
+    //     })
+    //   })
+    // })
    
   }
   
   componentWillUnmount() { }
 
-  componentDidShow() {
-
-   }
+  
 
   componentDidHide() { }
   uploadImg = ()=>{
@@ -40,16 +46,7 @@ class Index extends Component {
   render() {
     return (
       <View className='index'>
-        <View>
 
-        <Image mode="widthFix" style="width: 48vw;margin:0 8rpx; height: 200px; background-color: #eeeeee;" src={this.state.url}></Image>
-        <Image mode="widthFix" style="width: 48vw;margin:0 8rpx; height: 200px; background-color: #eeeeee;" src={this.state.url}></Image>
-      </View>
-        <View>
-        <Image mode="widthFix" style="width: 48vw;margin:0 8rpx; height: 200px; background-color: #eeeeee;" src={this.state.url}></Image>
-        <Image mode="widthFix" style="width: 48vw; margin:0 8rpx; height: 200px; background-color: #eeeeee;" src={this.state.url}></Image>
-        </View>
-       
         <View onClick={this.uploadImg}>上传图片
         </View>
       </View>

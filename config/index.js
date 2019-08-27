@@ -1,6 +1,10 @@
+// eslint-disable-next-line import/no-commonjs
+const path = require('path')
+
 const config = {
   projectName: 'app_demo',
   date: '2019-3-28',
+ 
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
@@ -26,8 +30,13 @@ const config = {
   },
   defineConstants: {
   },
+  alias: {
+    '@/util': path.resolve(__dirname, '..', 'src/util'),
+},
   copy: {
     patterns: [
+      { from: "src/custom-tab-bar/", to: "dist/custom-tab-bar/" },
+      { from: "src/assets", to: "dist/assets" },
     ],
     options: {
     }

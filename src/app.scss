@@ -7,18 +7,18 @@
   }
   $borderColor:#ccc;
   .box{
-    height: 120px;
-    border-bottom: 1px solid $borderColor;
+    height: 120rpx;
+    border-bottom: 1rpx solid $borderColor;
     margin-bottom: 50rpx;
 
   }
   .flat-card{
-    height: 130px;
-    border-top: 1px solid $borderColor;
+    height: 130rpx;
+    border-top: 1rpx solid $borderColor;
 
   }
   .at-card{
-    margin: 12px;
+    margin: 12rpx;
   }
 
   .ticket {
