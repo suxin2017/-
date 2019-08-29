@@ -2,12 +2,10 @@ import '@tarojs/async-await'
 import 'taro-ui/dist/style/index.scss'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-import { AtTabBar  } from 'taro-ui'
 import Index from './pages/index'
 import configStore from './store'
 import './app.scss'
-import aware from './assets/aware.png'
-import {getUserInfo} from './util/api'
+import { getUserInfo } from './util/api'
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -17,7 +15,6 @@ import {getUserInfo} from './util/api'
 const store = configStore()
 
 class App extends Component {
-
   config = {
     pages: [
       'pages/index/index',
@@ -30,7 +27,7 @@ class App extends Component {
     ],
     "cloud": true,
     window: {
-      enablePullDownRefresh:true,
+      enablePullDownRefresh: true,
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: '思潮儿童美术班作品竞赛',
@@ -40,7 +37,7 @@ class App extends Component {
       "custom": true,
       "selectedColor": "#000000",
       "backgroundColor": "#000000",
-      "position":"top",
+      "position": "top",
       "list": [
         {
           pagePath: "pages/index/index",
@@ -74,37 +71,33 @@ class App extends Component {
         },
       ]
     },
-  
   }
-
-  componentDidMount () {
+  componentDidMount() {
     wx.cloud.init();
-    getUserInfo((e)=>{
-      console.log(e.userInfo,'123')
+    getUserInfo((e) => {
     })
-    Taro.getSetting().then(e=>{
-      if(e.authSetting['scope.userInfo']){
+    Taro.getSetting().then(e => {
+      if (e.authSetting['scope.userInfo']) {
         Taro.getUserInfo({
           success(res) {
-            console.log(res.userInfo)
           }
-      })
+        })
       }
-  })
+    })
   }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentCatchError () {}
+  componentCatchError() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Index />

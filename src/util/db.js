@@ -1,13 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 import {userinfo} from '../dao'
 const db = wx.cloud.database()
+/**
+ * 和数据库相关的api
+ */
 
 export async function add(data){
   return await  db.collection('myapp').add({
     // data 字段表示需新增的 JSON 数据
     data: Object.assign(userinfo,data),
   }).then(res =>{
-    console.log(res)
     return res
   })
 }
@@ -33,6 +35,5 @@ export async function getCount(){
 }
 
 export async function getPollCount(){
-  
   return await db.collection('myapp');
 }

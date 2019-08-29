@@ -1,6 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import Taro, { Component } from '@tarojs/taro'
-
+/**
+ *
+ * 和文件相关的api
+ */
 export function uploadFile(success){
   Taro.chooseImage({
     count:1,
@@ -17,16 +20,14 @@ export function uploadFile(success){
             filePath: res.tempFilePaths[0],
             // 成功回调
             success: d => {
-              console.log('上传成功', d)
               success(d.fileID)
             },
             fail: console.error
           })
- 
+
       Taro.getImageInfo({
         src:res.tempFilePaths[0],
         success:(info)=>{
-          console.log(info);
         }
       })
     }

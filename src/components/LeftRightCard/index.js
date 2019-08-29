@@ -3,7 +3,7 @@ import { View } from '@tarojs/components'
 import { AtCard } from 'taro-ui'
 import './index.scss'
 /**
- * hasHeader:boolean 
+ * hasHeader:boolean
  */
 class Index extends Component {
 
@@ -12,7 +12,6 @@ class Index extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
   }
 
   componentWillUnmount() { }
@@ -21,8 +20,7 @@ class Index extends Component {
 
   componentDidHide() { }
   handleClick = (...args) => {
-    console.log(args)
-    Taro.switchTab({url:'page/index/index'}).then(console.log("成功转跳页面"))
+    Taro.switchTab({url:'page/index/index'})
   }
   render() {
     return (

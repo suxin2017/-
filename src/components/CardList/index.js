@@ -5,7 +5,7 @@ import {img} from '../../assets/image/img.png'
 import './index.scss'
 
 /**
- * hasHeader:boolean 
+ * hasHeader:boolean
  */
 class Index extends Component {
 
@@ -14,7 +14,6 @@ class Index extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.props, nextProps)
     }
 
     componentWillUnmount() { }
@@ -23,12 +22,11 @@ class Index extends Component {
 
     componentDidHide() { }
     handleClick = (...args) => {
-        console.log(args)
     }
     render() {
         return (
             <View>
-            
+
             </View>
         )
     }

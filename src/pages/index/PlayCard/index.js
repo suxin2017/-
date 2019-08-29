@@ -5,7 +5,7 @@ import img from '../assets/img.png'
 import './index.scss'
 
 /**
- * hasHeader:boolean 
+ * hasHeader:boolean
  */
 class Index extends Component {
 
@@ -14,7 +14,6 @@ class Index extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.props, nextProps)
     }
 
     componentWillUnmount() { }
@@ -23,19 +22,15 @@ class Index extends Component {
 
     componentDidHide() { }
     handleClick = (...args) => {
-        console.log(args)
-        Taro.navigateTo({ url: '../player/index' }).then(console.log("成功转跳页面"))
+        Taro.navigateTo({ url: '../player/index' })
     }
     goToDetail=(data)=>{
-    
-      console.log('详情')
+
       Taro.navigateTo({ url: `/pages/detail/index?id=${data._id}` }).then((res)=>{
-        console.log(res)
       })
     }
     render() {
       const {data} = this.props;
-      console.log(data,'darta')
         return (
             <View className='palyer-card' onClick={this.goToDetail.bind(this,data)}>
                 <View className='layer header'>

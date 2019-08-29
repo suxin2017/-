@@ -10,12 +10,11 @@ class Index extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
   }
 
   componentWillUnmount() { }
 
-  componentDidShow() { 
+  componentDidShow() {
     setCurrentTabBar.call(this,1)
   }
 

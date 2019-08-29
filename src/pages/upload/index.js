@@ -6,16 +6,15 @@ import { setCurrentTabBar } from '@/util/wxapp';
 class Index extends Component {
   constructor (props) {
     super(props)
-    this.state = { 
+    this.state = {
     }
- 
+
   }
   config = {
-    
+
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
   }
   componentDidShow() {
     setCurrentTabBar.call(this,2)
@@ -26,21 +25,20 @@ class Index extends Component {
     //     let arg = data.userInfo;
     //     add(arg).then(e=>{
     //       Taro.hideLoading()
-    //       console.log(e,'addsuccess')
     //       this.props.onAddSuccess(e);
     //     })
     //   })
     // })
-   
+
   }
-  
+
   componentWillUnmount() { }
 
-  
+
 
   componentDidHide() { }
   uploadImg = ()=>{
-  
+
     uploadFile()
   }
   render() {

@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-commonjs
 const path = require('path')
 
 const config = {
@@ -42,6 +41,9 @@ const config = {
     }
   },
   weapp: {
+    compile: {
+      exclude: ['src/custom-tab-bar/index.js']
+    },
     module: {
       postcss: {
         autoprefixer: {

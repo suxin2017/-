@@ -35,7 +35,6 @@ class Index extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
   }
 
   componentWillUnmount() { }
@@ -56,7 +55,7 @@ class Index extends Component {
             <View className='at-col-9'>
               <View className="title">{item.title}</View>
               <View className="describe">{item.describe}</View>
-              
+
             </View>
           </View>
 

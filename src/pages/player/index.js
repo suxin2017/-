@@ -1,12 +1,8 @@
-/* eslint-disable taro/no-stateless-component */
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { AtCountdown, AtCard, AtTabBar } from 'taro-ui'
 import Gift from './Gift'
 import { add, minus, asyncAdd } from '../../actions/counter'
-import bg from '../../img/bg.jpg'
-import touxiang from './assets/touxiang.png'
 import './index.scss'
 
 const data = [[{
@@ -75,9 +71,6 @@ class Index extends Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
-  }
 
   componentWillUnmount() { }
 
@@ -85,9 +78,9 @@ class Index extends Component {
 
   componentDidHide() { }
 
- 
+
   render() {
-   
+
     return (
       <View className='index'>
         <View className='user-info'>
@@ -96,7 +89,7 @@ class Index extends Component {
               <View  id='touxiang' >
               <Image src='https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epIau7LiaOu2wWCCmViaZxQwJQYB3q6ROdXL1kxXDofHNqTvURuzGqgI8ZUhDmDfPUSGdd9sYfRFLicg/132' style='margin:auto;width:128rpx;height:128rpx;border-radius:50%;display:block;'></Image>
               </View>
-             
+
             </View>
             <View className='at-col-5' style='padding-top:40rpx;'>
             <View className='at-row'>

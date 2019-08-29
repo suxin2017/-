@@ -44,17 +44,15 @@ class Index extends Component {
   componentWillUnmount() { }
 
   componentDidShow() {
-    console.log(this.props)
     setCurrentTabBar.call(this,0)
     getUserByLimit().then(res => {
       let arr = [];
-      console.log(res)
       for (let i = 0; i < res.data.length; i = i + 2) {
         const a1 = res.data[i];
         const a2 = res.data[i + 1] || null;
         arr.push([a1, a2])
       }
-      console.log(arr, 'ddd')
+
       this.setState({ userdata: arr })
     })
 
@@ -73,13 +71,13 @@ class Index extends Component {
         'type': 'success',
       })
       let arr = [];
-      console.log(res)
+
       for (let i = 0; i < res.data.length; i = i + 2) {
         const a1 = res.data[i];
         const a2 = res.data[i + 1] || null;
         arr.push([a1, a2])
       }
-      console.log(arr, 'ddd')
+
       this.setState({ userdata: arr })
     })
 
@@ -88,17 +86,16 @@ class Index extends Component {
   handleClick = (value) => {
     switch (value) {
       case 1:
-        Taro.navigateTo({ url: '../rankinglist/index' }).then(console.log("成功转跳页面"))
+        Taro.navigateTo({ url: '../rankinglist/index' })
         break;
       case 3:
-        Taro.navigateTo({ url: '../award/index' }).then(console.log("成功转跳页面"))
+        Taro.navigateTo({ url: '../award/index' })
         break;
       case 4:
-        Taro.navigateTo({ url: '../cooperate/index' }).then(console.log("成功转跳页面"))
+        Taro.navigateTo({ url: '../cooperate/index' })
         break;
       default:
-        Taro.navigateTo({ url: '../palyer/index' }).then(console.log("成功转跳页面"))
-
+        Taro.navigateTo({ url: '../palyer/index' })
 
     }
   }
@@ -113,7 +110,7 @@ class Index extends Component {
     })
   }
   getUserInfo = (e) => {
-    console.log(e)
+
     this.onClose()
   }
   render() {

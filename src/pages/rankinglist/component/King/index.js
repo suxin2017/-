@@ -33,11 +33,9 @@ class Index extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.props, nextProps)
         if (this.props !== nextProps) {
             let { first, second, third } = this.state;
             let { data } = nextProps;
-            console.log(data, 'didshow')
             this.setState({
                 first: Object.assign(first, data[0]),
                 second: Object.assign(second, data[1]),
@@ -56,7 +54,6 @@ class Index extends Component {
 
     render() {
         let { first, second, third } = this.state;
-        console.log(this.props.data, '123123', first)
         return (
             <View className='index'>
                 <View className='title' style='padding-top:10%;background:#ff984d;height:400rpx;'>
