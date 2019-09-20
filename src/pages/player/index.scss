@@ -1,35 +1,126 @@
-.index{
+.index {
+  width: 100%;
+  height: 100%;
+
+  background: #0f082a;
+  color: aliceblue;
+
+  .user-info {
+    padding: 20rpx;
+
+    #touxiang {
+      border: 10px solid #1b0868;
+      border-radius: 50%;
+      width: 128rpx;
+      height: 128rpx;
+    }
+
+  }
+
+  .review {
+    position: relative;
     width: 100%;
-    height: 100vh;
-    background: #0f082a;
-    color: aliceblue;
-    .user-info{
-        padding: 20rpx;
-        #touxiang{
-            border: 10px solid #1b0868;
-            border-radius: 50%;
-            width: 128rpx;
-            height: 128rpx;
-        }
-        
+    height: 120rpx;
+    font-size: 20rpx;
+
+    .left {
+      position: absolute;
+      left: 60rpx;
+      top: 20rpx;
+      z-index: 2;
     }
-   
-    .gift-box{
+
+    .dddprogress {
+      position: absolute;
+      width: 595rpx;
+      background: #1b0868;
+      height: 24rpx;
+      top: 39rpx;
+      left: 80rpx;
+
+      .right-progress {
+        height: 100%;
+        background: #2c177e;
+      }
+    }
+
+    .right {
+      position: absolute;
+      right: 60rpx;
+      top: 20rpx;
+      z-index: 2;
+    }
+  }
+
+  .rankingInfo {
+    width: 94%;
+    margin: 17rpx;
+    font-size: 20rpx;
+
+    .at-col {
+      text-align: center;
+    }
+
+    .at-col:nth-child(2) {
+      border-right: 1rpx solid #2c177e;
+      border-left: 1rpx solid #2c177e;
+    }
+  }
+
+  .gift-box {
+    font-size: 20rpx;
+    padding: 15rpx;
+    background-color: #170c41;
+    border-radius: 25px;
+
+    .gift-bg {
+      max-height: 200rpx;
+      background-color: #1e1056;
+      border-radius: 25rpx;
+      margin: 15rpx;
+    }
+
+    .gift-bg:hover {
+      background-color: #2c177e;
+    }
+
+    .gift-consume {
+      color: #ff9915;
+    }
+  }
+
+  .comment {
+    padding: 20rpx;
+
+    form {
+      width: 100%;
+
+      textarea {
         font-size: 20rpx;
-        padding: 15rpx;
-        background-color: #170c41;
-        border-radius: 25px;
-        .gift-bg{
-            max-height: 200rpx;
-            background-color: #1e1056;
-            border-radius: 25rpx;
-            margin: 15rpx;
+        background: #2c177e;
+        border-radius: 10px;
+        border: 1rpx solid #1e1056;
+        margin: 0 auto;
+
+        width: 630rpx;
+        height: 220rpx;
+        padding: 20px;
+
+        &::placeholder {
+          font-size: 20rpx;
+
         }
-        .gift-bg:hover{
-          background-color: #2c177e;
-        }
-        .gift-consume{
-            color: #ff9915;
-        }
+
+        margin-bottom: 40rpx;
+      }
+
+      button {
+        width: 530rpx;
+        background: #ff9915;
+        color: #fff;
+        margin-bottom: 50rpx;
+      }
     }
+
+  }
 }

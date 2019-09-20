@@ -9,7 +9,7 @@
   },
   "globals": {
     "wx": true,
-    "Component":true
+    "Component":true,
 },
   "parser": "babel-eslint",
 }

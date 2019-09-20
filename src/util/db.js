@@ -1,5 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import {userinfo} from '../dao'
+
 const db = wx.cloud.database()
 /**
  * 和数据库相关的api

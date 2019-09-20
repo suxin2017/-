@@ -3,7 +3,7 @@ const path = require('path')
 const config = {
   projectName: 'app_demo',
   date: '2019-3-28',
- 
+
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,

@@ -9,10 +9,11 @@ import joinpng from './assets/join.png'
 import searchpng from './assets/search.png'
 import guagngaopng from './assets/guanggao.png'
 import Footer from '../../components/Footer'
-
+import baseconfig from '@/util/db/baseconfig'
 import './index.scss'
 import { setCurrentTabBar } from '@/util/wxapp';
-
+import { handleCouldData } from '@/util/helper';
+import moment from 'moment'
 
 @connect(({ global }) => ({
   global
@@ -32,7 +33,8 @@ class Index extends Component {
     super(...arguments)
     this.state = {
       isOpened: false,
-      userdata: [[{}, {}]]
+      userdata: [[{}, {}]],
+      expirationTime:"",
     }
   }
   config = {
@@ -45,6 +47,33 @@ class Index extends Component {
 
   componentDidShow() {
     setCurrentTabBar.call(this,0)
+    baseconfig.getBaseConfig().then(res=>{
+      console.log("数据",res)
+      const data = handleCouldData(res)
+     const expirationTime =  data[0].expiration_time
+      return expirationTime;
+    }).then(expirationTime=>{
+      wx.cloud.callFunction({
+        // 云函数名称
+        name: 'now',
+        // 传给云函数的参数
+        data: {
+          a: 1,
+          b: 2,
+        },
+        success: (res)=> {
+          console.log(res.result) // 3
+          const result = Date.parse(expirationTime) - res.result.data;
+          console.log(expirationTime)
+          // const expirationTime =this.expirationTime - res.result
+          console.log(result,moment(result),moment(result).day())
+
+          this.setState({expirationTime:result})
+        },
+        fail: console.error
+      })
+    })
+
     getUserByLimit().then(res => {
       let arr = [];
       for (let i = 0; i < res.data.length; i = i + 2) {
@@ -122,7 +151,16 @@ class Index extends Component {
         return (<PlayerCard key={i} data={item[1]}></PlayerCard>)
       }
     })
-    return (
+    const date = moment(this.state.expirationTime);
+    let expiration = {
+      day:date.day(),
+      hours:date.hours(),
+      minutes:date.minutes(),
+      seconds:date.seconds()
+    }
+    console.log(expiration)
+
+     return (
       <View className='index'>
         <AtMessage />
         {/* TODO 获取用户信息权限弹框 */}
@@ -145,10 +183,10 @@ class Index extends Component {
             <AtCard title='活动倒计时'>
               <AtCountdown
                 isShowDay
-                day={2}
-                hours={1}
-                minutes={1}
-                seconds={10}
+                day={expiration.day}
+                hours={expiration.hours}
+                minutes={expiration.minutes}
+                seconds={expiration.seconds}
               />
             </AtCard>
           </View>

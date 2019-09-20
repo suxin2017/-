@@ -6,6 +6,7 @@ import Index from './pages/index'
 import configStore from './store'
 import './app.scss'
 import { getUserInfo } from './util/api'
+import { getBaseConfig } from './util/db/baseconfig';
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -74,19 +75,24 @@ class App extends Component {
   }
   componentDidMount() {
     wx.cloud.init();
+
+
     getUserInfo((e) => {
     })
     Taro.getSetting().then(e => {
       if (e.authSetting['scope.userInfo']) {
         Taro.getUserInfo({
           success(res) {
+
           }
         })
       }
     })
   }
 
-  componentDidShow() { }
+  componentDidShow() {
+
+   }
 
   componentDidHide() { }
 

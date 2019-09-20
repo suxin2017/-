@@ -5,6 +5,9 @@ module.exports = {
   defineConstants: {},
   // 小程序端专用配置
   weapp: {
+    compile: {
+      exclude: ['src/custom-tab-bar/index.js']
+    },
     module: {
       postcss: {
         autoprefixer: {

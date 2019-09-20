@@ -1,58 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import giftlist from '@/util/db/giftlist';
-import {handleCouldData} from '@/util/util';
+import {handleCouldData} from '@/util/helper';
 import { connect } from '@tarojs/redux'
 import { AtCountdown, AtCard, AtTabBar } from 'taro-ui'
 
 import './index.scss'
-
-// const data = [[{
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }, {
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }, {
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }], [{
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }, {
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }, {
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }], [{
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }, {
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }, {
-//   addNum: +5,
-//   name: '比心',
-//   consume: 1,
-//   imgUrl: 'cloud://sign-8a5778.7369-sign-8a5778/gift/图层 19.png'
-// }]];
 
 
 class Index extends Component {
@@ -94,8 +47,7 @@ class Index extends Component {
                   <View className='gift-consume'>{item.consume}</View>
                 </View>
               </View>
-
-        })
+          })
         }
       </View>
     )
