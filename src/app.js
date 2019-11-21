@@ -25,6 +25,7 @@ class App extends Component {
       'pages/award/index',
       'pages/cooperate/index',
       'pages/upload/index',
+      'pages/search/index',
     ],
     "cloud": true,
     window: {

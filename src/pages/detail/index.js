@@ -1,8 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text, Button } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
+import { View, Image, Text, Card } from '@tarojs/components'
 import { getUserById } from '../../util/db'
-
 import './index.scss'
 
 
@@ -48,7 +46,7 @@ class Index extends Component {
   }
   render() {
     let { userdata } = this.state;
-    let {fileId='',name,_id} = userdata;
+    let { fileId = '', name, _id } = userdata;
     return (
       <View className='index'>
         <View className='img-production' >
@@ -58,10 +56,12 @@ class Index extends Component {
             lazy-load
           ></Image>
           <View className='img-footer'>
-      {name}
-      {_id}
+            {name}
+            {_id}
           </View>
         </View>
+
+
       </View>
     )
   }

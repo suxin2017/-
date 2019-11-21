@@ -1,35 +1,17 @@
 /* eslint-disable import/prefer-default-export */
 import Taro, { Component } from '@tarojs/taro'
+
 /**
  *
  * 和文件相关的api
  */
-export function uploadFile(success){
-  Taro.chooseImage({
-    count:1,
-    success:(res)=>{
-      Taro.showLoading({
-        title: '上传中',
-      })
-      console.log(res)
-          // 将图片上传至云存储空间
-          wx.cloud.uploadFile({
-            // 指定上传到的云路径
-            cloudPath: `images/${Date.now().toString().substr(5)}`,
-            // 指定要上传的文件的小程序临时文件路径
-            filePath: res.tempFilePaths[0],
-            // 成功回调
-            success: d => {
-              success(d.fileID)
-            },
-            fail: console.error
-          })
-
-      Taro.getImageInfo({
-        src:res.tempFilePaths[0],
-        success:(info)=>{
-        }
-      })
-    }
-  })
+export function uploadFile(files) {
+  return Promise.all(files.map(file => {
+    console.log(file)
+    return wx.cloud.uploadFile({
+      cloudPath: `images/${Date.now().toString().substr(5)}`,
+      filePath: file.url,
+    })
+  }
+  ))
 }

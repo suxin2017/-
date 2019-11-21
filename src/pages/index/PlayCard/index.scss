@@ -1,8 +1,9 @@
 .palyer-card{
     border: 1px solid #d6e4ef;
     border-radius: 12px;
+    break-inside: avoid;
     // height: 320px;
-    margin:0 12px 20px;
+    margin:0 8rpx 20rpx;
     padding:10rpx;
     .layer{
         display: flex;

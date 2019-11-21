@@ -1,13 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text, Button } from '@tarojs/components'
+import { View, Image, Text, Button, Navigator } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { AtCountdown, AtButton, AtCurtain, AtMessage, AtCard, AtTabBar } from 'taro-ui'
 import PlayerCard from './PlayCard'
 import { add, minus, asyncAdd } from '../../actions/counter'
 import { getUserByLimit } from '../../util/db'
-import joinpng from './assets/join.png'
-import searchpng from './assets/search.png'
-import guagngaopng from './assets/guanggao.png'
 import Footer from '../../components/Footer'
 import baseconfig from '@/util/db/baseconfig'
 import './index.scss'
@@ -48,7 +45,6 @@ class Index extends Component {
   componentDidShow() {
     setCurrentTabBar.call(this,0)
     baseconfig.getBaseConfig().then(res=>{
-      console.log("数据",res)
       const data = handleCouldData(res)
      const expirationTime =  data[0].expiration_time
       return expirationTime;
@@ -75,14 +71,7 @@ class Index extends Component {
     })
 
     getUserByLimit().then(res => {
-      let arr = [];
-      for (let i = 0; i < res.data.length; i = i + 2) {
-        const a1 = res.data[i];
-        const a2 = res.data[i + 1] || null;
-        arr.push([a1, a2])
-      }
-
-      this.setState({ userdata: arr })
+      this.setState({ userdata: res.data })
     })
 
     Taro.getSetting().then(e => {
@@ -144,13 +133,10 @@ class Index extends Component {
   }
   render() {
     let userOddView = this.state.userdata.map((item, i) => {
-        return (<PlayerCard key={i} data={item[0]}></PlayerCard>)
+      return (
+           <PlayerCard key={i} data={item}></PlayerCard>)
     })
-    let userEvenView = this.state.userdata.map((item, i) => {
-      if(item[1]!==null){
-        return (<PlayerCard key={i} data={item[1]}></PlayerCard>)
-      }
-    })
+
     const date = moment(this.state.expirationTime);
     let expiration = {
       day:date.day(),
@@ -192,23 +178,34 @@ class Index extends Component {
           </View>
           {/* <TabBar onAddSuccess={this.onAddSuccess}></TabBar> */}
           <View className='at-row feature-view'>
-            <View className='at-col' style='margin-left:8px;'>
-              <Image src={joinpng} className='image'></Image>
+            <View className='at-col' style='margin-left:8px;'
+            onClick={
+              ()=>{
+                console.log(123)
+                wx.switchTab({
+                  url: '/pages/upload/index'
+                })
+              }
+            } >
+              <Image src={'cloud://sign-8a5778.7369-sign-8a5778-1257631768/icon/join.png'} className='image'></Image>
             </View>
-            <View className='at-col'>
-              <Image src={searchpng} className='image' style='margin-right:8px;'></Image>
+            <View className='at-col'
+              onClick={
+                ()=>{
+                  console.log(123)
+                Taro.navigateTo({
+                    url: '/pages/search/index'
+                  })
+                }
+              }>
+              <Image src={'cloud://sign-8a5778.7369-sign-8a5778-1257631768/icon/search.png'} className='image' style='margin-right:8px;'></Image>
             </View>
           </View>
-          <View>
+          {/* <View>
             <Image src={guagngaopng} className='image' style='height:100px;margin:0 10px;'></Image>
-          </View>
-          <View className='at-row feature-view'>
-            <View className='at-col'>
+          </View> */}
+          <View style='column-count: 2;column-gap: 0;'>
               {userOddView}
-            </View>
-            <View className='at-col'>
-              {userEvenView}
-            </View>
           </View>
         </View>
 
