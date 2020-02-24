@@ -9,7 +9,7 @@ export function uploadFile(files) {
   return Promise.all(files.map(file => {
     console.log(file)
     return wx.cloud.uploadFile({
-      cloudPath: `images/${Date.now().toString().substr(5)}`,
+      cloudPath: `images/${Math.random()*10}_${Math.random()*10}_${Math.random()*10}`,
       filePath: file.url,
     })
   }

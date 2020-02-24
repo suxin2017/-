@@ -1,7 +1,7 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View, Image, Text,  } from "@tarojs/components";
 import {AtButton} from 'taro-ui';
-import { getUserById, addContribute } from "../../util/db";
+import { getUserById, addContribute } from "@/util/db";
 import "./index.scss";
 import { updateUserData, getUsersData } from "@/util/db/wxUser";
 import { updateUserInfo } from "@/util/db/user";
@@ -20,11 +20,8 @@ class Index extends Component {
 
 
   componentDidShow() {
-    console.log(this.props,'props')
-    // const {userId} = this.props;
-    // getUserById(userId).then(res => {
-    //   this.setState({ userdata: res[0] });
-    // });
+    const {user} = this.props;
+      this.setState({ userdata:user });
   }
   componentDidHide() {}
   handleClick = () => {};
@@ -41,11 +38,12 @@ class Index extends Component {
                 message: `每个用户只能投一次票`
               });
             }else{
-              const data = {...wxUser};
+         
+            }
+                 const data = {...wxUser};
               data.vote = 1;
               updateUserData(userInfo,data)
               this.submitPoll();
-            }
           }
          
         })
@@ -60,7 +58,9 @@ class Index extends Component {
           userdata.poll = 0;
         }
         userdata.poll += 1;
-        updateUserInfo(userdata._id, { poll: userdata.poll });
+        updateUserInfo(userdata._id, { poll: userdata.poll }).then(()=>{
+          this.props.user.poll += 1
+        })
   };
   onClose() {
     this.setState({
@@ -71,9 +71,8 @@ class Index extends Component {
     this.onClose();
   };
   render() {
-    let { userdata={} } = this.state;
-    let { filesList = [], name, _id, description } = userdata;
-    console.log(this.props,'props')
+    let { user={} } = this.props;
+    let { filesList = [], name, _id='', description } = user;
     return (
       <View className="index">
         {filesList.map(item => {
@@ -95,15 +94,7 @@ class Index extends Component {
         <View>
         {description}
         </View>
-        <View style="padding: 10rpx 20rpx;">
-              <AtButton
-                type="primary"
-                style="background:#ff9915;"
-                onClick={this.sendVote}
-              >
-                投一票
-              </AtButton>
-          </View>
+      
       </View>
     );
   }

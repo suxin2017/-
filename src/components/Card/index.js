@@ -10,7 +10,7 @@ import './index.scss'
 class Index extends Component {
 
   config = {
-    navigationBarTitleText: '思潮儿童美术班作品竞赛'
+    navigationBarTitleText: '美术作品竞赛'
   }
 
   componentWillReceiveProps(nextProps) {

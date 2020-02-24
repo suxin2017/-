@@ -1,7 +1,7 @@
 import { ADD, MINUS } from '../constants/counter'
 
 const INITIAL_STATE = {
-    navigationBarTitleText: '思潮儿童美术班作品竞赛'
+    navigationBarTitleText: '美术作品竞赛'
 }
 
 export default function counter (state = INITIAL_STATE, action) {

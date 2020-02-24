@@ -3,12 +3,11 @@ import { View, Image, Form, Button, Textarea } from "@tarojs/components";
 import { connect } from "@tarojs/redux";
 import Gift from "./Gift";
 import { add, minus, asyncAdd } from "../../actions/counter";
-import { AtActivityIndicator, AtMessage } from 'taro-ui'
+import { AtActivityIndicator } from 'taro-ui'
 import "./index.scss";
 import { addContribute, getUserById } from "@/util/db";
 import { updateUserInfo, getUserRanking } from "@/util/db/user";
-import Detail from './detail'
-import { getUsersData, updateUserData } from "@/util/db/wxUser";
+
 class Index extends Component {
   config = {};
 
@@ -24,6 +23,7 @@ class Index extends Component {
       getUserRanking(currentRouter.options.id).then(resRanking => {
         const [currentRanking, nextUser] = resRanking;
         const currentPoll = currentPlayer.poll || 0;
+        console.log(nextUser, "zzz");
         const nextPoll = (nextUser && nextUser.poll) || 0;
         const totalPoll = currentPoll + nextPoll;
 
@@ -59,65 +59,38 @@ class Index extends Component {
   }
 
   componentDidHide() {}
- 
+  submitPoll = () => {
+    let {
+      userId,
+      nickName,
+      avatarUrl,
+      giftName,
+      giftScore,
+      currentPlayer
+    } = this.state;
+    let param = { userId, nickName, avatarUrl, giftName, giftScore };
+    addContribute(param).then(res => {
+      if (res) {
+        if (!currentPlayer.poll) {
+          currentPlayer.poll = 0;
+        }
+        currentPlayer.poll += giftScore;
+        updateUserInfo(currentPlayer._id, { poll: currentPlayer.poll });
+      }
+    });
+  };
   giftClick = data => {
     const { name: giftName, score: giftScore } = data;
     const state = this.state;
     this.setState({ ...state, giftName, giftScore });
   };
 
-  sendVote = ()=>{
-    Taro.getUserInfo({lang:'zh_CN'}).then(res=>{
-      const {userInfo} = res;
-      if(userInfo){
-        getUsersData(userInfo).then(uRes=>{
-          const [wxUser] = uRes.data;
-          if(wxUser){
-            if(wxUser.vote === 1){
-              Taro.atMessage({
-                type: "error",
-                message: `每个用户只能投一次票`
-              });
-            }else{
-              const data = {...wxUser};
-              data.vote = 1;
-              delete data._openid;
-              updateUserData(data)
-              this.submitPoll();
-            }
-          }
-         
-        })
-      }
-    })
-  }
-  submitPoll = () => {
-    let {
-      currentPlayer
-    } = this.state;
-        if (!currentPlayer.poll) {
-          currentPlayer.poll = 0;
-        }
-        currentPlayer.poll += 1;
-        updateUserInfo(currentPlayer._id, { poll: currentPlayer.poll }).then(()=>{
-          Taro.atMessage({
-            type: "sucess",
-            message: `更新成功`
-          });
-          getUserById(currentPlayer._id).then(res => {
-            const [play] = res;
-            this.setState({currentPlayer:play})
-          })      
-        });
-  };
-
   render() {
-    const { currentPlayer={}, nextUser, currentRanking, nextParent } = this.state;
-    const {_id} = currentPlayer
+    const { currentPlayer, nextUser, currentRanking, nextParent } = this.state;
     return (
+      <AtActivityIndicator content='加载中...'>
 
       <View className='index'>
-                <AtMessage />
         <View className='user-info'>
           <View className='at-row'>
             <View className='at-col-3'>
@@ -138,28 +111,53 @@ class Index extends Component {
             </View>
           </View>
         </View>
-     
+        <View className='review'>
+          <View className='left'>
+            <Image
+              src='cloud://sign-8a5778.7369-sign-8a5778/icon/huangguan.png'
+              style='width: 58rpx;height: 58rpx;'
+              ></Image>
+            <View>排名 : {currentRanking + 1}</View>
+          </View>
+          {nextUser && (
+            <View className='dddprogress'>
+              <View
+                className='right-progress'
+                style={`width:${nextParent}%;`}
+                ></View>
+            </View>
+          )}
+          {nextUser && (
+            <View className='right'>
+              <Image
+                src='cloud://sign-8a5778.7369-sign-8a5778/icon/huangguan.png'
+                style='width: 58rpx;height: 58rpx;'
+                ></Image>
+              <View>排名 : {currentRanking}</View>
+            </View>
+          )}
+        </View>
         <View className='rankingInfo at-row'>
           <View className='at-col'>
             <View>选手编号</View>
-            <View>{String(_id).substr(0,6)}</View>
+            <View>{currentPlayer.id}</View>
           </View>
           <View className='at-col'>
             <View>当前票数</View>
-            <View>{currentPlayer.poll || 0}</View>
+            <View>{poll || 0}</View>
           </View>
         </View>
-        <View style="padding:10rpx">
-
-        <Detail user={currentPlayer}></Detail>
+        <View className='gift-box'>
+          <Gift onClick={this.giftClick}></Gift>
         </View>
         <View className='comment'>
-            <Button
-             type="primary"
-             style="background:#ff9915;"
-            onClick={this.sendVote}>投上一票</Button>
+          <Form onSubmit={this.submitPoll}>
+            <Textarea maxLength={200} placeholder='备注' />
+            <Button formType='submit'>送出礼物</Button>
+          </Form>
         </View>
       </View>
+          </AtActivityIndicator>
     );
   }
 }

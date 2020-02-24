@@ -1,57 +1,62 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Image,Button,Text } from '@tarojs/components'
-import { AtCard } from 'taro-ui'
-import img from '../assets/img.png'
-import './index.scss'
+import Taro, { Component } from "@tarojs/taro";
+import { View, Image, Button, Text } from "@tarojs/components";
+import { AtCard } from "taro-ui";
+import img from "../assets/img.png";
+import "./index.scss";
 
 /**
  * hasHeader:boolean
  */
 class Index extends Component {
+  config = {
+    navigationBarTitleText: "美术作品竞赛"
+  };
 
-    config = {
-        navigationBarTitleText: '思潮儿童美术班作品竞赛'
-    }
+  componentWillReceiveProps(nextProps) {}
 
-    componentWillReceiveProps(nextProps) {
-    }
+  componentWillUnmount() {}
 
-    componentWillUnmount() { }
+  componentDidShow() {}
 
-    componentDidShow() { }
-
-    componentDidHide() { }
-    handleClick = (...args) => {
-        Taro.navigateTo({ url: '../player/index' })
-    }
-    goToDetail=(data)=>{
-
-      Taro.navigateTo({ url: `/pages/detail/index?id=${data._id}` }).then((res)=>{
-      })
-    }
-    render() {
-      const {data} = this.props;
-        return (
-            <View className='palyer-card' onClick={this.goToDetail.bind(this,data)}>
-                <View className='layer header'>
-                  <View className='name' > <Text>{data.name}</Text></View>
-                  <View  className='button' onClick={this.handleClick}> 投票</View>
-                </View>
-                <View className='content'>
-                  <Image
-                    style='width: 100%;height:100%;'
-                    mode='widthFix'
-                    lazy-load
-                    src={data.fileId}
-                  />
-                </View>
-                <View className='layer footer'>
-                  <View > ID:{data._id}</View>
-                  <View > {data.poll}票</View>
-                </View>
-            </View>
-        )
-    }
+  componentDidHide() {}
+  handleClick = (...args) => {
+    const { data } = this.props;
+    Taro.navigateTo({ url: `../player/index?id=${data._id}` });
+  };
+  goToDetail = data => {
+    Taro.navigateTo({
+      url: `/pages/detail/index?id=${data._id}`
+    });
+  };
+  render() {
+    const { data={} } = this.props;
+    return (
+      <View className="palyer-card" onClick={this.handleClick.bind(this,data)}>
+        <View className="layer header">
+          <View className="name">
+            {" "}
+            <Text>{data.name}</Text>
+          </View>
+          <View className="button" >
+            {" "}
+            投票
+          </View>
+        </View>
+        <View className="content">
+          <Image
+            style="width: 100%;height:100%;"
+            mode="widthFix"
+            lazy-load
+            src={data.filesList && data.filesList[0]}
+          />
+        </View>
+        <View className="layer footer">
+          <View> ID:{String(data._id).substring(20)}</View>
+          <View> {data.poll || 0}票</View>
+        </View>
+      </View>
+    );
+  }
 }
 
-export default Index
+export default Index;

@@ -32,7 +32,7 @@ class App extends Component {
       enablePullDownRefresh: true,
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '思潮儿童美术班作品竞赛',
+      navigationBarTitleText: '美术作品竞赛',
       navigationBarTextStyle: 'black'
     },
     "tabBar": {
