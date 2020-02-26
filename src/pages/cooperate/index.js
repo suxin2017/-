@@ -54,23 +54,6 @@ class Index extends Component {
               className="at-col"
              
             >
-              <AtCard className="at-card-no-header"
-               onClick={()=>{
-                Taro.previewImage({
-                  current:"cloud://sign-8a5778.7369-sign-8a5778-1257631768/bg/wx.png",
-                  urls:["cloud://sign-8a5778.7369-sign-8a5778-1257631768/bg/wx.png"]
-                })
-              }}>
-                <View style="display:flex;">
-                  <Image
-                    src={weixinIcon}
-                    style="width:48rpx;height:48rpx;margin-right:10rpx;"
-                  ></Image>
-                  <View style="height:48rpx;">
-                    <Text>添加微信进一步的了解我</Text>
-                  </View>
-                </View>
-              </AtCard>
             </View>
           </View>
 
