@@ -34,7 +34,7 @@
     "moment": "^2.24.0",
     "nerv-devtools": "^1.4.4",
     "nervjs": "^1.4.4",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
